@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "Property 1=15.cloud-light.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
