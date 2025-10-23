@@ -59,7 +59,7 @@ struct Clouds: Decodable {
 // MARK: - MainClass
 struct MainClass: Decodable {
     let temp, feelsLike, tempMin, tempMax: Double
-    let pressure, seaLevel, grndLevel, humidity: Int
+    let pressure, seaLevel, groundLevel, humidity: Int
     let tempKf: Double
 
     enum CodingKeys: String, CodingKey {
@@ -69,7 +69,7 @@ struct MainClass: Decodable {
         case tempMax = "temp_max"
         case pressure
         case seaLevel = "sea_level"
-        case grndLevel = "grnd_level"
+        case groundLevel = "grnd_level"
         case humidity
         case tempKf = "temp_kf"
     }
@@ -95,12 +95,16 @@ struct Rain: Decodable {
 
 // MARK: - Sys
 struct Sys: Decodable {
-    let pod: Pod
+    let partOfTheDay: PartOfTheDay
+    
+    enum CodingKeys: String, CodingKey {
+        case partOfTheDay = "pod"
+    }
 }
 
-enum Pod: String, Decodable {
-    case d = "d"
-    case n = "n"
+enum PartOfTheDay: String, Decodable {
+    case day = "d"
+    case night = "n"
 }
 
 // MARK: - Wind
