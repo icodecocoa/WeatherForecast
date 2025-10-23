@@ -103,6 +103,14 @@ enum Pod: String, Decodable {
     case n = "n"
 }
 
+// MARK: - Wind
+struct Wind: Decodable {
+    let speed: Double
+    let deg: Int
+    let gust: Double
+}
+
+///https://openweathermap.org/weather-conditions
 // MARK: - Weather
 struct Weather: Decodable {
     let id: Int
@@ -185,11 +193,4 @@ enum Description: String, Decodable {
     case scatteredClouds = "scattered clouds"
     case brokenClouds = "broken clouds"
     case overcastClouds = "overcast clouds"
-}
-
-// MARK: - Wind
-struct Wind: Decodable {
-    let speed: Double
-    let deg: Int
-    let gust: Double
 }
