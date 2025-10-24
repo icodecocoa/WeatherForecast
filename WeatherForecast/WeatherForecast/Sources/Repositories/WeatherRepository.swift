@@ -28,7 +28,7 @@ final class WeatherRepositoryImpl: WeatherRepository {
             }
             let days = grouped.sorted { $0.key < $1.key }.prefix(5)
             return days.map { (date, items) in
-                // pick midday or the first
+                // pick first
                 let chosen = items.first!
                 return ForecastItem(dt: chosen.dt, main: chosen.main, weather: chosen.weather, clouds: chosen.clouds, wind: chosen.wind, visibility: chosen.visibility, pop: chosen.pop, sys: chosen.sys, dtTxt: chosen.dtTxt, snow: chosen.snow, rain: chosen.rain)
             }
