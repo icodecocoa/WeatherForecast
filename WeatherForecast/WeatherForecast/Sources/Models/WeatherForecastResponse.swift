@@ -30,7 +30,8 @@ struct Coordinate: Decodable {
     let lat: Double
 }
 
-struct ForecastItem: Decodable {
+struct ForecastItem: Decodable, Identifiable {
+    let id = UUID()
     let dt: Int
     let main: MainClass
     let weather: [Weather]

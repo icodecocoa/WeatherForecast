@@ -23,8 +23,14 @@ final class WeatherRepositoryImpl: WeatherRepository {
             // OpenWeatherMap returns data every 3 hours — pick one item per day (e.g., 12:00)
             let calendar = Calendar.current
             let grouped = Dictionary(grouping: resp.list) { item -> Date in
-                let date = Date(timeIntervalSince1970: TimeInterval(item.dt))
-                return calendar.startOfDay(for: date)
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+                if let date = dateFormatter.date(from: item.dtTxt) {
+                    return calendar.startOfDay(for: date)
+                } else {
+                    let date = Date(timeIntervalSince1970: TimeInterval(item.dt))
+                    return calendar.startOfDay(for: date)
+                }
             }
             let days = grouped.sorted { $0.key < $1.key }.prefix(5)
             return days.map { (date, items) in
