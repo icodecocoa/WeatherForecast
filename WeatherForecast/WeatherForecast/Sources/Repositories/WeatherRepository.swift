@@ -12,9 +12,9 @@ protocol WeatherRepository {
 }
 
 final class WeatherRepositoryImpl: WeatherRepository {
-    private let api: OpenWeatherAPI
+    private let api: OpenWeatherAPIType
     
-    init(api: OpenWeatherAPI) {
+    init(api: OpenWeatherAPIType) {
         self.api = api
     }
     

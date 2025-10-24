@@ -7,7 +7,17 @@
 
 import Foundation
 
-struct OpenWeatherAPI {
+// MARK: - Protocol Abstraction
+
+/// Defines the contract for fetching data from the OpenWeatherMap API.
+protocol OpenWeatherAPIType {
+    func fetchFiveDayForecast(forLatitude latitude: Double, andLongitude longitude: Double) async throws -> WeatherForecastResponse
+}
+
+// MARK: - Concrete Implementation
+
+/// The concrete implementation of the OpenWeatherMap API client.
+struct OpenWeatherAPI: OpenWeatherAPIType {
     private let apiKey: String
     private let client: NetworkClient
     
