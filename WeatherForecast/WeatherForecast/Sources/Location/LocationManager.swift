@@ -8,7 +8,7 @@
 import Foundation
 import CoreLocation
 
-final class LocationManager: NSObject, CLLocationManagerDelegate {
+class LocationManager: NSObject, CLLocationManagerDelegate {
     private let locationManager = CLLocationManager()
     private var continuation: CheckedContinuation<CLLocationCoordinate2D, Error>?
     private var hasResumed = false

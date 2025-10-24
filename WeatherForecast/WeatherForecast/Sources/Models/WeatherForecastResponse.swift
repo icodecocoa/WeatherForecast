@@ -26,8 +26,8 @@ struct City: Decodable {
 
 //MARK: - Coordinate
 struct Coordinate: Decodable {
-    let lon: Double
     let lat: Double
+    let lon: Double
 }
 
 struct ForecastItem: Decodable, Identifiable {
