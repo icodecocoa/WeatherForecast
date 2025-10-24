@@ -16,7 +16,7 @@ struct WeatherListView: View {
             case .idle:
                 Button("Tap to load weather") {
                     Task {
-                        await viewModel.fecthWeather()
+                        await viewModel.fetchWeather()
                     }
                 }
             case .loading:
@@ -27,6 +27,11 @@ struct WeatherListView: View {
                 }
             case .failed(let error):
                 Text("Error: \(error)")
+            }
+        }
+        .onAppear() {
+            Task {
+                await viewModel.fetchWeather()
             }
         }
     }

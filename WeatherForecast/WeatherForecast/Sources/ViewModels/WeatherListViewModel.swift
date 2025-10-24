@@ -24,7 +24,7 @@ final class WeatherListViewModel: ObservableObject {
         self.locationManager = locationManager
     }
     
-    func fecthWeather() async {
+    func fetchWeather() async {
         self.state = .loading
         do {
             let coordinates = try await locationManager.requestLocation()
