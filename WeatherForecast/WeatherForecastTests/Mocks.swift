@@ -43,7 +43,21 @@ enum RepositoryError: Error {
     case serverError
 }
 
-final class MockWeatherRepository: OpenWeatherAPIType {
+final class MockWeatherRepository: WeatherRepository {
+    var shouldSucceed: Bool = true
+    var mockForecast: [ForecastItem]?
+    var customError: RepositoryError?
+    
+    func fetchFiveDayForecast(lat: Double, lon: Double) async throws -> [ForecastItem] {
+        if shouldSucceed, let mockForecast = mockForecast {
+            return mockForecast
+        } else {
+            throw customError ?? .serverError
+        }
+    }
+}
+
+final class MockOpenAPIRepository: OpenWeatherAPIType {
     var shouldSucceed: Bool = true
     var mockForecast: WeatherForecastResponse?
     var customError: RepositoryError?

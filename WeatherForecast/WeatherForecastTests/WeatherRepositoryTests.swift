@@ -12,11 +12,11 @@ import XCTest
 final class WeatherRepositoryTests: XCTestCase {
     
     private var repository: WeatherRepositoryImpl!
-    private var mockAPI: MockWeatherRepository!
+    private var mockAPI: MockOpenAPIRepository!
     
     override func setUp() {
         super.setUp()
-        mockAPI = MockWeatherRepository()
+        mockAPI = MockOpenAPIRepository()
         repository = WeatherRepositoryImpl(api: mockAPI)
     }
     
