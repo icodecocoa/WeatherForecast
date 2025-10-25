@@ -39,6 +39,7 @@ final class WeatherListViewModelTests: XCTestCase {
     func test_loadWeather_successChangesStateToLoaded() async {
         // Arrange
         mockRepository.shouldSucceed = true
+        mockRepository.mockForecast = WeatherForecastResponse.mock(count: 5).list
         
         // Act
         await viewModel.fetchWeather()
@@ -61,7 +62,7 @@ final class WeatherListViewModelTests: XCTestCase {
         
         // Assert
         if case .failed(let message) = viewModel.state {
-            XCTAssertTrue(message.contains("server"), "Error message should mention server error.")
+            XCTAssertTrue(message.contains("RepositoryError"), "Error message should mention repository error.")
         } else {
             XCTFail("Expected .failed state, got \(viewModel.state)")
         }

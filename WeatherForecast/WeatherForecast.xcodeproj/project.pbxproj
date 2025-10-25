@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		B958975D2EACCB5F00AB6FC7 /* TestPlan.xctestplan in Resources */ = {isa = PBXBuildFile; fileRef = B958975C2EACCB5F00AB6FC7 /* TestPlan.xctestplan */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		B92400BD2EABCD03005431A6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -19,6 +23,7 @@
 /* Begin PBXFileReference section */
 		B92400B92EABCD03005431A6 /* WeatherForecastTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WeatherForecastTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B924FFD02EAA5EC8005431A6 /* WeatherForecast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherForecast.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B958975C2EACCB5F00AB6FC7 /* TestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = TestPlan.xctestplan; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -55,6 +60,7 @@
 		B924FFC72EAA5EC8005431A6 = {
 			isa = PBXGroup;
 			children = (
+				B958975C2EACCB5F00AB6FC7 /* TestPlan.xctestplan */,
 				B924FFD22EAA5EC8005431A6 /* WeatherForecast */,
 				B92400BA2EABCD03005431A6 /* WeatherForecastTests */,
 				B924FFD12EAA5EC8005431A6 /* Products */,
@@ -169,6 +175,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B958975D2EACCB5F00AB6FC7 /* TestPlan.xctestplan in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

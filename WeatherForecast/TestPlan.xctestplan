@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "296A99A6-FE77-469D-900D-A28499B799B1",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:WeatherForecast.xcodeproj",
+        "identifier" : "B92400B82EABCD03005431A6",
+        "name" : "WeatherForecastTests"
+      }
+    }
+  ],
+  "version" : 1
+}
