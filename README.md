@@ -64,7 +64,7 @@ WeatherForecast
 - 🖼 Dynamic background based on weather (Sunny, Cloudy, Rainy)  
 - 🔄 Refresh forecast when location changes  
 - 📱 Adaptive layout for iPhone and iPad  
-- 🧪 Comprehensive unit + UI test coverage  
+- 🧪 Comprehensive unit test coverage  
 
 ---
 
