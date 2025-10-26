@@ -32,17 +32,38 @@ jobs:
         key: derived-data-${{ runner.os }}-${{ hashFiles('**/*.xcodeproj') }}
         restore-keys: |
           derived-data-${{ runner.os }}-
+          
+    # 4️⃣ Build and Test with Coverage
+    - name: Build and Test with Coverage
+        run: |
+          xcodebuild test \
+            -scheme "WeatherForecast" \
+            -project WeatherForecast.xcodeproj \
+            -destination 'platform=iOS Simulator,name=iPhone 15' \
+            -enableCodeCoverage YES
+            
+    # 5️⃣ Extract Coverage Report
+    - name: Extract Coverage Report
+        run: |
+          xcrun xccov view --report --json $(find ~/Library/Developer/Xcode/DerivedData -name "*.xcresult" | head -1) > coverage.json
 
-    # 4️⃣ Install SwiftLint
+    # 6️⃣ Upload Coverage Artifact
+    - name: Upload Coverage Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: code-coverage
+          path: coverage.json
+
+    # 7️⃣ Install SwiftLint
     - name: Install SwiftLint
       run: |
         brew install swiftlint || true
 
-    # 5️⃣ Run SwiftLint (Static Code Analysis)
+    # 8️⃣ Run SwiftLint (Static Code Analysis)
     - name: Run Static Code Analysis
       run: swiftlint lint --quiet
 
-    # 6️⃣ Build and Run Unit Tests (TDD)
+    # 9️⃣ Build and Run Unit Tests (TDD)
     - name: Run Unit Tests (WeatherForecastTests)
       run: |
         xcodebuild clean test \
@@ -53,7 +74,7 @@ jobs:
           -only-testing:WeatherForecastTests \
           CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
 
-    # 7️⃣ Archive Build (for release validation)
+    # 🔟 Archive Build (for release validation)
     - name: Archive Build
       if: github.ref == 'refs/heads/main'
       run: |
