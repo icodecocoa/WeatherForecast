@@ -1,0 +1,64 @@
+name: WeatherForecast CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    name: Build & Test (WeatherForecast)
+    runs-on: macos-latest
+
+    steps:
+    # 1️⃣ Checkout Repository
+    - name: Checkout Source Code
+      uses: actions/checkout@v4
+      with:
+        ref: main
+
+    # 2️⃣ Setup Xcode
+    - name: Setup Xcode
+      uses: maxim-lobanov/setup-xcode@v1
+      with:
+        xcode-version: '16.0'
+
+    # 3️⃣ Cache Derived Data
+    - name: Cache Derived Data
+      uses: actions/cache@v4
+      with:
+        path: ~/Library/Developer/Xcode/DerivedData
+        key: derived-data-${{ runner.os }}-${{ hashFiles('**/*.xcodeproj') }}
+        restore-keys: |
+          derived-data-${{ runner.os }}-
+
+    # 4️⃣ Install SwiftLint
+    - name: Install SwiftLint
+      run: |
+        brew install swiftlint || true
+
+    # 5️⃣ Run SwiftLint (Static Code Analysis)
+    - name: Run Static Code Analysis
+      run: swiftlint lint --quiet
+
+    # 6️⃣ Build and Run Unit Tests (TDD)
+    - name: Run Unit Tests (WeatherForecastTests)
+      run: |
+        xcodebuild clean test \
+          -project WeatherForecast.xcodeproj \
+          -scheme "WeatherForecast" \
+          -destination 'platform=iOS Simulator,name=iPhone 15' \
+          -enableCodeCoverage YES \
+          -only-testing:WeatherForecastTests \
+          CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+
+    # 7️⃣ Archive Build (for release validation)
+    - name: Archive Build
+      if: github.ref == 'refs/heads/main'
+      run: |
+        xcodebuild clean archive \
+          -project WeatherForecast.xcodeproj \
+          -scheme "WeatherForecast" \
+          -archivePath build/WeatherForecast.xcarchive \
+          CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
